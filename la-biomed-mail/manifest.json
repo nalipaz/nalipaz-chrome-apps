@@ -1,0 +1,22 @@
+{
+  "manifest_version": 2,
+  "name": "LA BioMed Mail",
+  "description": "Outlook Web Access for LA BioMed",
+  "version": "1.0",
+  "icons": {
+    "128": "128.png"
+  },
+  "app": {
+    "urls": [
+      "https://outlook.office.com/"
+
+    ],
+    "launch": {
+      "web_url": "https://outlook.office.com/owa/?realm=labiomed.org"
+    }
+  },
+  "permissions": [
+    "unlimitedStorage",
+    "notifications"
+  ]
+}
