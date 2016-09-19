@@ -1,0 +1,22 @@
+{
+  "manifest_version": 2,
+  "name": "Bitrix",
+  "description": "Bitrix",
+  "version": "1.0",
+  "icons": {
+    "128": "128.png"
+  },
+  "app": {
+    "urls": [
+      "https://development.bitrix24.com/"
+
+    ],
+    "launch": {
+      "web_url": "https://development.bitrix24.com/"
+    }
+  },
+  "permissions": [
+    "unlimitedStorage",
+    "notifications"
+  ]
+}

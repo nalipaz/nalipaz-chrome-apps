@@ -1,0 +1,22 @@
+{
+  "manifest_version": 2,
+  "name": "CouchPotato",
+  "description": "CouchPotato",
+  "version": "1.0",
+  "icons": {
+    "128": "128.png"
+  },
+  "app": {
+    "urls": [
+      "http://home.alipaz.net:5050/"
+
+    ],
+    "launch": {
+      "web_url": "http://home.alipaz.net:5050/web"
+    }
+  },
+  "permissions": [
+    "unlimitedStorage",
+    "notifications"
+  ]
+}

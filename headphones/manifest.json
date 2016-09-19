@@ -1,0 +1,22 @@
+{
+  "manifest_version": 2,
+  "name": "Headphones",
+  "description": "Headphones",
+  "version": "1.0",
+  "icons": {
+    "128": "128.png"
+  },
+  "app": {
+    "urls": [
+      "http://home.alipaz.net:8181/"
+
+    ],
+    "launch": {
+      "web_url": "http://plex:W%40b5j7g9@home.alipaz.net:8181/"
+    }
+  },
+  "permissions": [
+    "unlimitedStorage",
+    "notifications"
+  ]
+}

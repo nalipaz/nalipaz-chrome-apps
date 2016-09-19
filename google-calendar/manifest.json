@@ -1,0 +1,22 @@
+{
+  "manifest_version": 2,
+  "name": "Calendar",
+  "description": "Google Calendar",
+  "version": "1.0",
+  "icons": {
+    "128": "128.png"
+  },
+  "app": {
+    "urls": [
+      "https://calendar.google.com/"
+
+    ],
+    "launch": {
+      "web_url": "https://calendar.google.com/calendar/render?&"
+    }
+  },
+  "permissions": [
+    "unlimitedStorage",
+    "notifications"
+  ]
+}
