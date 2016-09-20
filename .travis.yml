@@ -23,10 +23,6 @@ install:
       crxmake.sh ${app} extension.pem;
     done
 
-before_deploy:
-  - git tag -a "v.${TRAVIS_COMMIT}" -m "Release v.${TRAVIS_COMMIT}"
-  - git push origin "v.${TRAVIS_COMMIT}"
-
 deploy:
   provider: releases
   api_key: "${GITHUB_TOKEN}"
