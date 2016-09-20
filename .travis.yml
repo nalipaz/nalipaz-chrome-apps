@@ -25,6 +25,7 @@ install:
 
 before_deploy:
   - git tag -a "v.${TRAVIS_COMMIT}" -m "Release v.${TRAVIS_COMMIT}"
+  - git push origin "v.${TRAVIS_COMMIT}"
 
 deploy:
   provider: releases
