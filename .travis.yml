@@ -7,6 +7,7 @@ matrix:
   fast_finish: true
 
 before_install:
+  - cd ${TRAVIS_BUILD_DIR}
   - openssl aes-256-cbc -pass "pass:${PEM_DECRYPTION_KEY}" -in .extension -out extension.pem -d -a
   - go get github.com/aktau/github-release
   - sudo apt-get install jq
@@ -44,4 +45,3 @@ env:
     - app='labiomed-mail'
     - app='plex'
     - app='sonarr' job='last'
-    
