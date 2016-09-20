@@ -22,7 +22,7 @@ script:
       github-release release
        --tag "v.${TRAVIS_COMMIT}"
        --name "v.${TRAVIS_COMMIT}"
-       --description ""
+       --description "";
     fi
   - export name=`cat ${app}/manifest.json | jq -r .name` &&
     export description=`cat ${app}/manifest.json | jq -r .description` &&
