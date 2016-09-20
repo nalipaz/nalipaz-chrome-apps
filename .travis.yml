@@ -44,3 +44,4 @@ env:
     - app='labiomed-mail'
     - app='plex'
     - app='sonarr' job='last'
+    
