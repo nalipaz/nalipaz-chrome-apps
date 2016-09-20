@@ -8,15 +8,8 @@ addons:
 
 before_install:
   - cd /usr/local/bin/
-  - >-
-    sudo curl -LO https://github.com/aktau/github-release/releases/download/v0.6.2/linux-amd64-github-release.tar.bz2 &&
-    sudo tar -jxf linux-amd64-github-release.tar.bz2 &&
-    sudo chmod +x bin/linux/amd64/github-release &&
-    sudo mv bin/linux/amd64/github-release .
-    sudo rm bin -rf
-  - >-
-    sudo curl -LO https://cdn.rawgit.com/GoogleChrome/chrome-app-samples/cf768bbcbd0553dbe21197beb481e0371258b0a5/samples/dojo/crxmake.sh &&
-    sudo chmod +x crxmake.sh
+  - sudo curl -LO https://cdn.rawgit.com/GoogleChrome/chrome-app-samples/cf768bbcbd0553dbe21197beb481e0371258b0a5/samples/dojo/crxmake.sh
+  - sudo chmod +x crxmake.sh
   - cd ${TRAVIS_BUILD_DIR}
   - openssl aes-256-cbc -pass "pass:${PEM_DECRYPTION_KEY}" -in extension.pem.enc -out extension.pem -d -a
 
