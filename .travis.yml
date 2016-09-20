@@ -18,16 +18,14 @@ before_install:
   - cd ${TRAVIS_BUILD_DIR}
 
 script:
-  - >-
-    if [ ${job} == 'first' ]; then
+  - if [ ${job} == 'first' ]; then
       github-release release
        --tag "v.${TRAVIS_COMMIT}"
        --name "v.${TRAVIS_COMMIT}"
        --description ""
     fi
-  - >-
-    export name=`cat ${app}/manifest.json | jq -r .name`
-    export description=`cat ${app}/manifest.json | jq -r .description`
+  - export name=`cat ${app}/manifest.json | jq -r .name` &&
+    export description=`cat ${app}/manifest.json | jq -r .description` &&
     crxmake.sh ${app} extension.pem &&
     github-release upload
      --tag "v.${TRAVIS_COMMIT}"
