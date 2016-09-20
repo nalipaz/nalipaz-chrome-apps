@@ -2,20 +2,19 @@ matrix:
   fast_finish: true
 
 before_install:
-  - cd ${TRAVIS_BUILD_DIR}
-  - openssl aes-256-cbc -pass "pass:${PEM_DECRYPTION_KEY}" -in extension.pem.enc -out extension.pem -d -a
-  - >-
-    cd ~ &&
-    curl -LO https://github.com/aktau/github-release/releases/download/v0.6.2/linux-amd64-github-release.tar.bz2 &&
-    tar -jxf linux-amd64-github-release.tar.bz2 &&
-    chmod +x bin/linux/amd64/github-release &&
-    sudo mv bin/linux/amd64/github-release /usr/local/bin/
   - sudo apt-get install jq
+  - cd /usr/local/bin/
   - >-
-    cd /usr/local/bin/ &&
+    sudo curl -LO https://github.com/aktau/github-release/releases/download/v0.6.2/linux-amd64-github-release.tar.bz2 &&
+    sudo tar -jxf linux-amd64-github-release.tar.bz2 &&
+    sudo chmod +x bin/linux/amd64/github-release &&
+    sudo mv bin/linux/amd64/github-release .
+    sudo rm bin -rf
+  - >-
     sudo curl -LO https://cdn.rawgit.com/GoogleChrome/chrome-app-samples/cf768bbcbd0553dbe21197beb481e0371258b0a5/samples/dojo/crxmake.sh &&
     sudo chmod +x crxmake.sh
   - cd ${TRAVIS_BUILD_DIR}
+  - openssl aes-256-cbc -pass "pass:${PEM_DECRYPTION_KEY}" -in extension.pem.enc -out extension.pem -d -a
 
 script:
   - if [ ${job} == 'first' ]; then
@@ -29,14 +28,13 @@ script:
     crxmake.sh ${app} extension.pem &&
     github-release upload
      --tag "v.${TRAVIS_COMMIT}"
-     --name ${name}
+     --name ${name}.crx
      --file ${app}.crx
 
 env:
   matrix:
     - app='bitrix' job='first'
     - app='couchpotato'
-    - app='bitrix'
     - app='deluge'
     - app='google-calendar'
     - app='headphones'
