@@ -1,8 +1,12 @@
 matrix:
   fast_finish: true
 
+addons:
+  apt:
+    packages:
+      - jq
+
 before_install:
-  - sudo apt-get install jq
   - cd /usr/local/bin/
   - >-
     sudo curl -LO https://github.com/aktau/github-release/releases/download/v0.6.2/linux-amd64-github-release.tar.bz2 &&
@@ -16,28 +20,29 @@ before_install:
   - cd ${TRAVIS_BUILD_DIR}
   - openssl aes-256-cbc -pass "pass:${PEM_DECRYPTION_KEY}" -in extension.pem.enc -out extension.pem -d -a
 
-script:
-  - if [ ${job} == 'first' ]; then
-      github-release release
-       --tag "v.${TRAVIS_COMMIT}"
-       --name "v.${TRAVIS_COMMIT}"
-       --description "";
-    fi
-  - export name=`cat ${app}/manifest.json | jq -r .name` &&
-    export description=`cat ${app}/manifest.json | jq -r .description` &&
-    crxmake.sh ${app} extension.pem &&
-    github-release upload
-     --tag "v.${TRAVIS_COMMIT}"
-     --name ${name}.crx
-     --file ${app}.crx
+install:
+  - >-
+    for app in */; do
+      export name=`cat ${app}/manifest.json | jq -r .name` &&
+      export description=`cat ${app}/manifest.json | jq -r .description` &&
+      crxmake.sh ${app} extension.pem;
+    done
 
-env:
-  matrix:
-    - app='bitrix' job='first'
-    - app='couchpotato'
-    - app='deluge'
-    - app='google-calendar'
-    - app='headphones'
-    - app='labiomed-mail'
-    - app='plex'
-    - app='sonarr' job='last'
+before_deploy:
+  - git tag -a "v.${TRAVIS_COMMIT}" -m "Release v.${TRAVIS_COMMIT}"
+
+deploy:
+  provider: releases
+  api_key: "${GITHUB_TOKEN}"
+  file:
+    - bitrix.crx
+    - couchpotato.crx
+    - deluge.crx
+    - google-calendar.crx
+    - headphones.crx
+    - la-biomed-mail.crx
+    - plex.crx
+    - sonarr.crx
+  skip_cleanup: true
+  on:
+    tags: true
