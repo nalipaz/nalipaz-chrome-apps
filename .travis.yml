@@ -8,7 +8,7 @@ matrix:
 
 before_install:
   - cd ${TRAVIS_BUILD_DIR}
-  - openssl aes-256-cbc -pass "pass:${PEM_DECRYPTION_KEY}" -in ${TRAVIS_BUILD_DIR}/.extension -out ${TRAVIS_BUILD_DIR}/extension.pem -d -a
+  - openssl aes-256-cbc -pass "pass:${PEM_DECRYPTION_KEY}" -in extension.pem.enc -out extension.pem -d -a
   - go get github.com/aktau/github-release
   - sudo apt-get install jq
   - >-
