@@ -13,8 +13,8 @@ before_install:
   - sudo apt-get install jq
   - >-
     cd /usr/local/bin/ &&
-    curl -LO https://cdn.rawgit.com/GoogleChrome/chrome-app-samples/cf768bbcbd0553dbe21197beb481e0371258b0a5/samples/dojo/crxmake.sh &&
-    chmod +x crxmake.sh
+    sudo curl -LO https://cdn.rawgit.com/GoogleChrome/chrome-app-samples/cf768bbcbd0553dbe21197beb481e0371258b0a5/samples/dojo/crxmake.sh &&
+    sudo chmod +x crxmake.sh
   - cd ${TRAVIS_BUILD_DIR}
 
 script:
