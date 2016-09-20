@@ -12,7 +12,7 @@
 
     ],
     "launch": {
-      "web_url": "http://plex:W%40b5j7g9@home.alipaz.net:8181/"
+      "web_url": "http://%s:%s@home.alipaz.net:8181/"
     }
   },
   "permissions": [
